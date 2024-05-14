@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+	version="3.1">
+	<persistence-unit name="jpa"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<properties>
+			<property name="jakarta.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/bibliotheque" />
+			<property name="jakarta.persistence.jdbc.user" value="root" />
+			<property name="jakarta.persistence.jdbc.password" value="" />
+
+			<property name="hibernate.show_sql" value="true" />
+			<property name=" hibernate.format_sql" value="true" />
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+
+		</properties>
+	</persistence-unit>
+
+
+	<persistence-unit name="banque"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>banque.entitees.Banque</class>
+		<class>banque.entitees.Client</class>
+		<class>banque.entitees.Compte</class>
+		<class>banque.entitees.Operation</class>
+		<class>banque.entitees.LivretA</class>
+		<class>banque.entitees.AssuranceVie</class>
+		<class>banque.entitees.Virement</class>
+		
+		<properties>
+			<!-- desactiver l'autodetection des classes de type @Entity -->
+			<property name="hibernate.archive.autodetection" value="" />
+			<!--ne créé que les nouvelles tables après chaque redémarrage -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+
+			<!-- Activation de la génération des tables manquantes uniquement -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- Drop and create à chaque redémarrage -->
+			<property
+				name="jakarta.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+			<!-- Affichage des requêtes SQL -->
+			<property name="hibernate.show_sql" value="true" />
+			<!-- Paramètres d'accès à la BDD -->
+			<property name="jakarta.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/banque" />
+			<property name="jakarta.persistence.jdbc.user" value="root" />
+			<property name="jakarta.persistence.jdbc.password" value="" />
+
+
+		</properties>
+	</persistence-unit>
+</persistence>
